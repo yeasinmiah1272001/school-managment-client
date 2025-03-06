@@ -11,7 +11,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const navItems = [
   { id: 1, name: "Home", icon: <FaHome />, path: "/" },
-  { id: 2, name: "Courses", icon: <FaBook />, path: "/courses" },
+  { id: 2, name: "All Courses", icon: <FaBook />, path: "/courses" },
   {
     id: 3,
     name: "Instructors",
@@ -19,7 +19,7 @@ const navItems = [
     path: "/instructors",
   },
   { id: 4, name: "Profile", icon: <FaUserCircle />, path: "/login" },
-  { id: 5, name: "Cart", icon: <FaShoppingCart />, path: "/cart" },
+  { id: 5, name: "Dashboard", icon: <FaShoppingCart />, path: "/dashboard" },
 ];
 
 const Navbar = () => {
@@ -29,10 +29,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white text-black shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <div className="text-xl font-bold">OnlineCourses</div>
+        <div className="text-xl font-bold">E-Learning</div>
 
         {/* Navigation Items */}
         <ul className="hidden md:flex gap-6 items-center">

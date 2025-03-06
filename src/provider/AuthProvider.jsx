@@ -13,13 +13,15 @@ import React, { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.Config";
 import axios from "axios";
 
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 // const provider = new GoogleAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
@@ -50,11 +52,11 @@ const AuthProvider = ({ children }) => {
   const savedUser = async (user) => {
     const currentUser = {
       email: user?.email,
-      role: "user",
+      role: "admin",
       status: "veryfied",
     };
     const { data } = await axios.put(
-      `http://localhost:5000/users`,
+      "http://localhost:5000/users",
       currentUser
     );
     console.log("data", data);
@@ -62,7 +64,6 @@ const AuthProvider = ({ children }) => {
   };
 
   // token genarate
-
   const getToken = async (user) => {
     const email = user?.email;
     const { data } = await axios.post("http://localhost:5000/jwt", email);
@@ -71,7 +72,6 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.token);
     }
   };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
