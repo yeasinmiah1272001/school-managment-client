@@ -18,12 +18,15 @@ const navItems = [
     icon: <FaChalkboardTeacher />,
     path: "/instructors",
   },
-  { id: 4, name: "Profile", icon: <FaUserCircle />, path: "/register" },
+  { id: 4, name: "Profile", icon: <FaUserCircle />, path: "/login" },
   { id: 5, name: "Cart", icon: <FaShoppingCart />, path: "/cart" },
 ];
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut();
+  };
 
   return (
     <nav className="bg-gray-800 text-white shadow-md sticky top-0 z-50">
@@ -50,7 +53,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* User Image */}
+        {/* User Profile and Logout Button */}
         <div className="flex items-center gap-4">
           {user && user.photoURL ? (
             <img
@@ -60,6 +63,15 @@ const Navbar = () => {
             />
           ) : (
             <FaUserCircle className="text-3xl" />
+          )}
+
+          {user && (
+            <button
+              onClick={handleLogOut}
+              className="text-red-500 hover:text-red-700 transition"
+            >
+              Logout
+            </button>
           )}
         </div>
 
