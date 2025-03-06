@@ -1,17 +1,21 @@
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   getAuth,
-  signOut,
   onAuthStateChanged,
-} from "firebase/auth/cordova";
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.Config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 // const provider = new GoogleAuthProvider();
-
+const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
@@ -21,9 +25,19 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
   };
 
   const logOut = () => {
@@ -31,15 +45,11 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // const googleLogin = () => {
-  //   setLoading(true);
-  //   return signInWithPopup(auth, provider);
-  // };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
       if (currentUser) {
+        setUser(currentUser);
+        setLoading(false);
         // const userInfo = { email: currentUser.email };
         // axiosPublic.post("/jwt", userInfo).then((res) => {
         //   if (res.data.token) {
@@ -62,6 +72,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     loginUser,
     logOut,
+    updateUserProfile,
+    signInWithGoogle,
     // googleLogin,
   };
   return (
