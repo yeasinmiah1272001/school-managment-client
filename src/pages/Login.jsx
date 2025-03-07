@@ -11,8 +11,8 @@ const Login = () => {
   const { loginUser, loading, signInWithGoogle } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state || "/";
+  // const location = useLocation();
+  // const from = location.state || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const Login = () => {
     try {
       await loginUser(email, password);
       toast.success("user signIn success");
-      navigate(from);
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error during signIn up:", error.message);
     }
@@ -34,7 +34,7 @@ const Login = () => {
     try {
       await signInWithGoogle();
       toast.success("Google Login success");
-      navigate(from);
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error during sign up:", error.message);
       toast.error(error.message);

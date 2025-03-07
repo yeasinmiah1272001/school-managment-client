@@ -5,12 +5,18 @@ import MainLayOut from "../Layout/MainLayOut";
 import Error from "../components/Error";
 import Home from "../pages/home/Home";
 import Register from "../pages/Register";
-import Login from "../pages/Login";
 import DashboardLayout from "../Layout/DashboardLayout";
 import UserList from "../pages/Dashboard/Admin/UserList";
-import AddCourse from "../pages/Dashboard/Admin/AddCourse";
-import AllCourseList from "../pages/Dashboard/Admin/AllCourseList";
-import MyCourse from "../pages/Dashboard/User/MyCourse";
+
+import StudentProfile from "../pages/Dashboard/Student/StudentProfile";
+import StudentClassRotin from "../pages/Dashboard/Student/StudentClassRotin";
+import StudentResult from "../pages/Dashboard/Student/StudentResult";
+import TeacherProfile from "../pages/Dashboard/Teacher/TeacherProfile";
+import TeacherClassSedule from "../pages/Dashboard/Teacher/TeacherClassSedule";
+import AddStudentMark from "../pages/Dashboard/Teacher/AddStudentMark";
+import ParentProfile from "../pages/Dashboard/Parent/ParentProfile";
+import AddStudent from "../pages/Dashboard/Admin/AddStudent";
+import AddTeacher from "../pages/Dashboard/Admin/AddTeacher";
 
 export const Router = createBrowserRouter([
   {
@@ -26,32 +32,57 @@ export const Router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
     ],
   },
   {
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
+      // admin
       {
         path: "users",
         element: <UserList />,
       },
       {
-        path: "add-course",
-        element: <AddCourse />,
+        path: "add-student",
+        element: <AddStudent />,
       },
       {
-        path: "all-course",
-        element: <AllCourseList />,
+        path: "add-teacher",
+        element: <AddTeacher />,
       },
-      // user
+
+      // teacher related
       {
-        path: "my-course",
-        element: <MyCourse />,
+        path: "teacher-profile",
+        element: <TeacherProfile />,
+      },
+      {
+        path: "teacher-schedule",
+        element: <TeacherClassSedule />,
+      },
+      {
+        path: "subject-mark",
+        element: <AddStudentMark />,
+      },
+
+      // student releted
+      {
+        path: "student-profile",
+        element: <StudentProfile />,
+      },
+      {
+        path: "student-routin",
+        element: <StudentClassRotin />,
+      },
+      {
+        path: "student-result",
+        element: <StudentResult />,
+      },
+      // parent
+      {
+        path: "parent-profile",
+        element: <ParentProfile />,
       },
     ],
   },

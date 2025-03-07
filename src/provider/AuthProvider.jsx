@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
   const savedUser = async (user) => {
     const currentUser = {
       email: user?.email,
-      role: "admin",
+      role: "user",
       status: "veryfied",
     };
     const { data } = await axios.put(

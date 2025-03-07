@@ -7,8 +7,8 @@ const AdminMenu = () => {
     <>
       <MenuItem icon={FaChartBar} title="Statistics" address="statistics" />
       <MenuItem icon={FaUsers} title="All Users" address="users" />
-      <MenuItem icon={FaPlusCircle} title="Add Course" address="add-course" />
-      <MenuItem icon={FaBook} title="All Courses" address="all-course" />
+      <MenuItem icon={FaPlusCircle} title="Add Teacher" address="add-teacher" />
+      <MenuItem icon={FaBook} title="Add Student" address="add-student" />
     </>
   );
 };
