@@ -16,7 +16,7 @@ const MenuItem = ({ address, title, icon: Icon }) => {
         }
       >
         <Icon className="w-5 h-5" />
-        <span className="mx-4 font-medium">{title}</span>
+        <span className="mx-2 font-normal">{title}</span>
       </NavLink>
     </div>
   );

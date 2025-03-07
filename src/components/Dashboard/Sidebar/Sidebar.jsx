@@ -30,19 +30,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Small Screen Navbar */}
-      <div className="text-white flex justify-between items-center md:hidden bg-red-500 p-4 shadow-md">
-        <Link to="/">
-          <h1 className="text-lg font-bold">E-Learning</h1>
-        </Link>
-        <button
-          onClick={handleToggle}
-          className="focus:outline-none hover:bg-indigo-700 p-2 rounded-lg"
-        >
-          <AiOutlineBars className="h-6 w-6" />
-        </button>
-      </div>
-
       {/* Sidebar */}
       <div
         className={`z-10 md:fixed flex flex-col justify-between bg-[#072F7C] text-white w-64 h-full px-6 py-8 shadow-lg transition-transform transform duration-300 ease-in-out ${
