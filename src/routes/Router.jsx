@@ -17,6 +17,8 @@ import AddStudentMark from "../pages/Dashboard/Teacher/AddStudentMark";
 import ParentProfile from "../pages/Dashboard/Parent/ParentProfile";
 import AddStudent from "../pages/Dashboard/Admin/AddStudent";
 import AddTeacher from "../pages/Dashboard/Admin/AddTeacher";
+import PrivateRoute from "./PrivateRoute";
+import AddStudentParent from "../pages/Dashboard/Admin/AddStudentParent";
 
 export const Router = createBrowserRouter([
   {
@@ -36,7 +38,11 @@ export const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       // admin
       {
@@ -50,6 +56,10 @@ export const Router = createBrowserRouter([
       {
         path: "add-teacher",
         element: <AddTeacher />,
+      },
+      {
+        path: "add-student-parent",
+        element: <AddStudentParent />,
       },
 
       // teacher related

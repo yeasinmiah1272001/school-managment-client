@@ -38,15 +38,15 @@ const Sidebar = () => {
         } md:translate-x-0`}
       >
         {/* Logo Section */}
-        <div className="flex flex-col items-center">
+        <Link to={"/"} className="flex flex-col items-center">
           <img className="w-16" src={logo} alt="" />
-          <Link to="/">
+          <div>
             <h1 className="text-xl font-semibold tracking-wide">
               School Management
             </h1>
-          </Link>
+          </div>
           <h2 className="text-lg font-semibold mt-2">Dashboard ({role})</h2>
-        </div>
+        </Link>
 
         {/* Navigation Links */}
         <nav className=" space-y-4">
