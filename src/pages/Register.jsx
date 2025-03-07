@@ -24,15 +24,11 @@ const Register = () => {
     formData.append("image", image);
 
     try {
-      // Upload image to imgbb
       const { data } = await axios.post(
         `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`,
         formData
       );
-
       const imageUrl = data.data.display_url;
-
-      // Create user and update profile
       await createUser(email, password);
       await updateUserProfile(name, imageUrl);
       toast.success("User registered successfully");
@@ -47,7 +43,7 @@ const Register = () => {
     try {
       await signInWithGoogle();
       toast.success("Google Login success");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error during Google login:", error.message);
       toast.error(error.message);
@@ -55,111 +51,93 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Register</h1>
-          <p className="text-sm text-gray-400">Create your account</p>
-        </div>
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
-        >
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block mb-2 text-sm">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter Your Name Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="image" className="block mb-2 text-sm">
-                Upload Profile Picture
-              </label>
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                className="w-full"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
-                Email address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="text-sm mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Enter a secure password"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                required
-              />
-            </div>
+    <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg p-8 w-96 md:w-[600px]"
+      >
+        <h1 className="text-2xl font-bold text-center mb-6">Register</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
           </div>
-
-          <button
-            disabled={loading}
-            type="submit"
-            className="bg-rose-500 w-full rounded-md py-3 text-white"
-          >
-            {loading ? (
-              <TbFidgetSpinner
-                size={20}
-                className="animate-spin text-center justify-center m-auto"
-              />
-            ) : (
-              "Register"
-            )}
-          </button>
-        </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 bg-gray-300"></div>
-          <p className="px-3 text-sm text-gray-500">
-            Signup with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 bg-gray-300"></div>
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Image
+            </label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
         </div>
-        <div
-          onClick={handleGoogle}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer"
+        <button
+          type="submit"
+          className="w-full mt-4 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition flex justify-center items-center"
         >
-          <FcGoogle size={32} />
-          <p>Continue with Google</p>
-        </div>
-        <p className="px-6 text-sm text-center text-gray-500">
-          Already have an account?{" "}
-          <Link
-            to="/"
-            className="hover:underline hover:text-rose-500 text-gray-600"
+          {loading ? (
+            <TbFidgetSpinner size={20} className="animate-spin" />
+          ) : (
+            "Register"
+          )}
+        </button>
+        <div className="flex justify-center items-center mt-4 w-full">
+          <button
+            onClick={handleGoogle}
+            type="button"
+            className="flex items-center space-x-2 border w-full py-2 rounded-md shadow-sm bg-white hover:bg-gray-100 transition justify-center"
           >
-            Login
-          </Link>
-          .
-        </p>
-      </div>
+            <FcGoogle size={24} />
+            <span>Continue with Google</span>
+          </button>
+        </div>
+      </form>
+      <p className="px-6 text-sm text-center text-gray-400 mt-4">
+        Don&apos;t have an account yet?
+        <Link
+          to="/"
+          className="hover:underline hover:text-rose-500 text-gray-600"
+        >
+          {" "}
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import useRole from "../../../hooks/useRole";
 import StudentMenu from "./Menu/StudentMenu";
 import TeacherMenu from "./Menu/TeacherMenu";
 import ParentMenu from "./Menu/ParentMenu";
+import logo from "../../../assets/logo.png";
 
 const Sidebar = () => {
   const { logOut } = useContext(AuthContext);
@@ -38,8 +39,11 @@ const Sidebar = () => {
       >
         {/* Logo Section */}
         <div className="flex flex-col items-center">
+          <img className="w-16" src={logo} alt="" />
           <Link to="/">
-            <h1 className="text-2xl font-bold tracking-wide">E-Learning</h1>
+            <h1 className="text-xl font-semibold tracking-wide">
+              School Management
+            </h1>
           </Link>
           <h2 className="text-lg font-semibold mt-2">Dashboard ({role})</h2>
         </div>

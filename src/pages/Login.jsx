@@ -1,138 +1,111 @@
-import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-
 import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
   const { loginUser, loading, signInWithGoogle } = useContext(AuthContext);
-
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const from = location.state || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-
     const email = form.email.value;
     const password = form.password.value;
 
     try {
       await loginUser(email, password);
-      toast.success("user signIn success");
+      toast.success("User sign-in successful");
       navigate("/dashboard");
     } catch (error) {
-      console.error("Error during signIn up:", error.message);
+      console.error("Error during sign-in:", error.message);
+      toast.error(error.message);
     }
   };
 
   const handleGoogle = async () => {
     try {
       await signInWithGoogle();
-      toast.success("Google Login success");
+      toast.success("Google Login successful");
       navigate("/dashboard");
     } catch (error) {
-      console.error("Error during sign up:", error.message);
+      console.error("Error during Google sign-in:", error.message);
       toast.error(error.message);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm text-gray-400">
-            Sign in to access your account
-          </p>
+    <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg p-8 w-96"
+      >
+        <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
         </div>
-        <form
-          onSubmit={handleSubmit}
-          noValidate=""
-          action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition flex justify-center items-center"
         >
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
-                Email address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
-              />
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm mb-2">
-                  Password
-                </label>
-              </div>
-              <input
-                type="password"
-                name="password"
-                autoComplete="current-password"
-                id="password"
-                required
-                placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-              />
-            </div>
-          </div>
-
+          {loading ? (
+            <TbFidgetSpinner size={20} className="animate-spin" />
+          ) : (
+            "Login"
+          )}
+        </button>
+        <div className="flex justify-center items-center mt-4 w-full">
           <button
-            type="submit"
-            className="bg-rose-500 w-full rounded-md py-3 text-white"
+            onClick={handleGoogle}
+            type="button"
+            className="flex items-center space-x-2 border w-full py-2 rounded-md shadow-sm bg-white hover:bg-gray-100 transition justify-center"
           >
-            {loading ? (
-              <TbFidgetSpinner
-                size={20}
-                className="animate-spin text-center justify-center m-auto "
-              />
-            ) : (
-              "Login"
-            )}
-          </button>
-        </form>
-        <div className="space-y-1">
-          <button className="text-xs hover:underline hover:text-rose-500 text-gray-400">
-            Forgot password?
+            <FcGoogle size={24} />
+            <span>Continue with Google</span>
           </button>
         </div>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Login with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
-        <div
-          onClick={handleGoogle}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer"
+      </form>
+      <p className="px-6 text-sm text-center text-gray-400 mt-4">
+        Don&apos;t have an account yet?
+        <Link
+          to="/register"
+          className="hover:underline hover:text-rose-500 text-gray-600"
         >
-          <FcGoogle size={32} />
-          <p>Continue with Google</p>
-        </div>
-        <p className="px-6 text-sm text-center text-gray-400">
-          Don&apos;t have an account yet?{" "}
-          <Link
-            to="/register"
-            className="hover:underline hover:text-rose-500 text-gray-600"
-          >
-            Sign up
-          </Link>
-          .
-        </p>
-      </div>
+          {" "}
+          Sign up
+        </Link>
+      </p>
     </div>
   );
 };
