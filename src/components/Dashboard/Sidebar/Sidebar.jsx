@@ -39,17 +39,17 @@ const Sidebar = () => {
       >
         {/* Logo Section */}
         <Link to={"/"} className="flex flex-col items-center">
-          <img className="w-16" src={logo} alt="" />
-          <div>
+          <img className="w-10" src={logo} alt="" />
+          {/* <div>
             <h1 className="text-xl font-semibold tracking-wide">
               School Management
             </h1>
-          </div>
+          </div> */}
           <h2 className="text-lg font-semibold mt-2">Dashboard ({role})</h2>
         </Link>
 
         {/* Navigation Links */}
-        <nav className=" space-y-4">
+        <nav className="">
           {role === "admin" && <AdminMenu />}
           {role === "student" && <StudentMenu />}
           {role === "teacher" && <TeacherMenu />}
@@ -57,7 +57,7 @@ const Sidebar = () => {
         </nav>
 
         {/* Profile and Logout */}
-        <div className="mt-8 border-t border-indigo-500 pt-6 space-y-4">
+        <div className="mt-2 border-t border-indigo-500 pt-6 space-y-4">
           {/* Profile */}
           <NavLink
             to="/dashboard/profile"

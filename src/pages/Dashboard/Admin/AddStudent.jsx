@@ -17,6 +17,7 @@ const AddStudent = () => {
     { label: "Photo", id: "photo", type: "file" },
     { label: "Admission Date", id: "admission-date", type: "date" },
     { label: "Father's Name", id: "fathers-name" },
+    { label: "Fee", id: "fee" },
   ];
 
   return (

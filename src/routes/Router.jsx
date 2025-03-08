@@ -6,8 +6,6 @@ import Error from "../components/Error";
 import Home from "../pages/home/Home";
 import Register from "../pages/Register";
 import DashboardLayout from "../Layout/DashboardLayout";
-import UserList from "../pages/Dashboard/Admin/UserList";
-
 import StudentProfile from "../pages/Dashboard/Student/StudentProfile";
 import StudentClassRotin from "../pages/Dashboard/Student/StudentClassRotin";
 import StudentResult from "../pages/Dashboard/Student/StudentResult";
@@ -19,6 +17,10 @@ import AddStudent from "../pages/Dashboard/Admin/AddStudent";
 import AddTeacher from "../pages/Dashboard/Admin/AddTeacher";
 import PrivateRoute from "./PrivateRoute";
 import AddStudentParent from "../pages/Dashboard/Admin/AddStudentParent";
+import AllStudentList from "../pages/Dashboard/Admin/AllStudentList";
+import AllTeacherList from "../pages/Dashboard/Admin/AllTeacherList";
+import Statistics from "../pages/Dashboard/Admin/Statistics";
+import AdmissionFee from "../pages/Dashboard/Student/AdmissionFee";
 
 export const Router = createBrowserRouter([
   {
@@ -46,8 +48,8 @@ export const Router = createBrowserRouter([
     children: [
       // admin
       {
-        path: "users",
-        element: <UserList />,
+        path: "all-student-list",
+        element: <AllStudentList />,
       },
       {
         path: "add-student",
@@ -60,6 +62,14 @@ export const Router = createBrowserRouter([
       {
         path: "add-student-parent",
         element: <AddStudentParent />,
+      },
+      {
+        path: "all-teacher-list",
+        element: <AllTeacherList />,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
 
       // teacher related
@@ -93,6 +103,10 @@ export const Router = createBrowserRouter([
       {
         path: "parent-profile",
         element: <ParentProfile />,
+      },
+      {
+        path: "admission-fee",
+        element: <AdmissionFee />,
       },
     ],
   },

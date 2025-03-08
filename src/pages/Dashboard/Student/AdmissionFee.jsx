@@ -1,18 +1,18 @@
 import React from "react";
-import useRole from "../../../hooks/useRole";
 import DasboardTitle from "../../../components/Dashboard/DasboardTitle";
 import Container from "../../../components/Container";
+import useRole from "../../../hooks/useRole";
 
-const UserList = () => {
+const AdmissionFee = () => {
   const [role] = useRole();
   return (
     <div>
-      <DasboardTitle role={role} action={"All Users"} />
+      <DasboardTitle role={role} action={"Student Fee"} />
       <Container className="">
-        <h1>Add All Users</h1>
+        <h1>Student Fee Form</h1>
       </Container>
     </div>
   );
 };
 
-export default UserList;
+export default AdmissionFee;

@@ -6,9 +6,18 @@ const AdminMenu = () => {
   return (
     <>
       <MenuItem icon={FaChartBar} title="Statistics" address="statistics" />
-      <MenuItem icon={FaUsers} title="All Users" address="users" />
       <MenuItem icon={FaPlusCircle} title="Add Teacher" address="add-teacher" />
       <MenuItem icon={FaBook} title="Add Student" address="add-student" />
+      <MenuItem
+        icon={FaUsers}
+        title="All Teacher List"
+        address="all-teacher-list"
+      />
+      <MenuItem
+        icon={FaUsers}
+        title="All Student List"
+        address="all-student-list"
+      />
       <MenuItem
         icon={FaBook}
         title="Add Student Parent"
