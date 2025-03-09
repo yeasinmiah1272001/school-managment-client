@@ -47,6 +47,8 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
     const email = form.email.value;
     const joiningDate = form.joiningDate.value;
     const image = form.image.files[0];
+    const day = form.day.value;
+    const classTime = form.classTime.value;
 
     try {
       let imageUrl = teacher.image;
@@ -62,6 +64,8 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
         email,
         joiningDate,
         image: imageUrl,
+        day,
+        classTime,
       };
 
       updateTeacherMutation.mutate(formInfo); // trigger mutation
@@ -69,6 +73,16 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
       console.log(error);
     }
   };
+
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   return (
     <Transition className="" appear show={updateIsOpen} as={Fragment}>
@@ -190,6 +204,28 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
                         )}
                         className="border rounded-md p-1 w-2/3"
                       />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <label className="font-semibold">Class Time:</label>
+                      <input
+                        type="text"
+                        name="classTime"
+                        defaultValue={teacher?.classTime}
+                        className="border rounded-md p-1 w-2/3"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <label className="block font-medium">Class Day</label>
+                      <select
+                        name="day"
+                        className="border rounded-md p-1 w-2/3"
+                      >
+                        {daysOfWeek.map((day, index) => (
+                          <option key={index} value={day}>
+                            {day}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 

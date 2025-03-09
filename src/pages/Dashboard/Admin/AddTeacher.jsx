@@ -24,6 +24,17 @@ const AddTeacher = () => {
     { label: "Email", name: "email", type: "email" },
     { label: "Joining Date", name: "joiningDate", type: "date" },
     { label: "Father's Name", name: "fatherName" },
+    { label: "Class Time", name: "classTime" },
+  ];
+
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
   ];
 
   // Define the mutation outside handleSubmit
@@ -34,11 +45,11 @@ const AddTeacher = () => {
       return data;
     },
     onSuccess: async () => {
-      toast.success("Teacher Added succesfull");
+      toast.success("Teacher Added successfully");
       navigate("/dashboard/all-teacher-list");
     },
-    onError: async () => {
-      toast.error(error);
+    onError: async (error) => {
+      toast.error(error.message);
     },
   });
 
@@ -56,6 +67,8 @@ const AddTeacher = () => {
     const email = form.email.value;
     const joiningDate = form.joiningDate.value;
     const fatherName = form.fatherName.value;
+    const day = form.day.value;
+    const classTime = form.classTime.value;
 
     // Use mutation to submit data
     try {
@@ -72,6 +85,8 @@ const AddTeacher = () => {
         email,
         joiningDate,
         fatherName,
+        day,
+        classTime,
       };
 
       await mutation.mutateAsync(formInfo);
@@ -100,6 +115,16 @@ const AddTeacher = () => {
               placeholder={field.label}
             />
           ))}
+          <div>
+            <label className="block font-medium">Class Day</label>
+            <select name="day" className="w-full p-2 border rounded-md">
+              {daysOfWeek.map((day, index) => (
+                <option key={index} value={day}>
+                  {day}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className="bg-indigo-500 hover:bg-gray-600 duration-300 w-1/2 mx-auto mt-3 rounded-full">
           <button type="submit" className="text-white p-1 rounded-full w-full">
