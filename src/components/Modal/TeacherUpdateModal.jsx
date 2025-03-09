@@ -71,7 +71,7 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
   };
 
   return (
-    <Transition appear show={updateIsOpen} as={Fragment}>
+    <Transition className="" appear show={updateIsOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={updateCloseModal}>
         <TransitionChild
           as={Fragment}
@@ -98,7 +98,7 @@ const TeacherUpdateModal = ({ updateCloseModal, updateIsOpen, teacher }) => {
             >
               <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white shadow-xl transition-all">
                 <form onSubmit={handleSubmit}>
-                  <div className="p-6 bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-t-xl">
+                  <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-t-xl">
                     <img
                       src={teacher.image}
                       alt="Teacher"

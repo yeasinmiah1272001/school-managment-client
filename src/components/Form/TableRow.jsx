@@ -2,18 +2,31 @@ import React, { useState } from "react";
 import TeacherProfileModal from "../Modal/TeacherProfileModal";
 import useRole from "../../hooks/useRole";
 import TeacherUpdateModal from "../Modal/TeacherUpdateModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
-const TableRow = ({ teacher }) => {
+const TableRow = ({ teacher, refetch }) => {
   const [role] = useRole();
   const [isOpen, setIsOpen] = useState(false);
   const [updateIsOpen, setUpdateIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const closeModal = () => {
     setIsOpen(false);
   };
   const updateCloseModal = () => {
     setUpdateIsOpen(false);
+    refetch();
   };
+
+  const handleDelete = async (id) => {
+    const res = await axiosSecure.delete(`/teacher/${id}`);
+    if (res.data.deletedCount > 0) {
+      toast.success("Teacher Deleted Success");
+      refetch();
+    }
+  };
+
   return (
     <tr className="hover:bg-indigo-300 duration-500">
       <td className="border border-gray-300 px-4 py-2 text-center">
@@ -44,6 +57,18 @@ const TableRow = ({ teacher }) => {
           </button>
         </td>
       )}
+
+      {role === "admin" && (
+        <td
+          onClick={() => handleDelete(teacher._id)}
+          className="border border-gray-300 px-4 py-2 text-center"
+        >
+          <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+            Delete
+          </button>
+        </td>
+      )}
+
       {/* Profile Modal */}
       <TeacherProfileModal
         closeModal={closeModal}

@@ -22,7 +22,7 @@ const TeacherProfileModal = ({ closeModal, isOpen, teacher }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0  bg-opacity-25" />
+          <div className="fixed inset-0 bg-opacity-25" />
         </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -36,8 +36,8 @@ const TeacherProfileModal = ({ closeModal, isOpen, teacher }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-sm transform overflow-hidden rounded-xl bg-white shadow-xl transition-all">
-                <div className="p-6 bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-t-xl">
+              <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-xl bg-white shadow-xl transition-all">
+                <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-t-xl">
                   <img
                     src={teacher.image}
                     alt="Teacher"

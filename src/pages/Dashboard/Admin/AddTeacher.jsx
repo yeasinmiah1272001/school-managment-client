@@ -7,10 +7,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
 import { imageUpload } from "../../../utility";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddTeacher = () => {
-  const [role] = useRole();
+  const [role, isPending] = useRole();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const formFields = [
     { label: "Name", name: "name" },
@@ -33,6 +35,7 @@ const AddTeacher = () => {
     },
     onSuccess: async () => {
       toast.success("Teacher Added succesfull");
+      navigate("/dashboard/all-teacher-list");
     },
     onError: async () => {
       toast.error(error);
@@ -76,6 +79,8 @@ const AddTeacher = () => {
       console.error("Error:", error);
     }
   };
+
+  if (isPending) return <span>Loading</span>;
 
   return (
     <div className="min-h-screen">
