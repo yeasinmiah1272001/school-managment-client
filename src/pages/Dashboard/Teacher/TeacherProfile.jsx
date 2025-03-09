@@ -44,6 +44,9 @@ const TeacherProfile = () => {
                 <th className="border border-gray-300 px-4 py-2">Name</th>
                 <th className="border border-gray-300 px-4 py-2">Email</th>
                 <th className="border border-gray-300 px-4 py-2">Action</th>
+                {role === "admin" && (
+                  <th className="border border-gray-300 px-4 py-2">Action</th>
+                )}
               </tr>
             </thead>
 
