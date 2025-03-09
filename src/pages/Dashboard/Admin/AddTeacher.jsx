@@ -5,6 +5,8 @@ import FormInput from "../../../components/Form/FormInput";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
+import { imageUpload } from "../../../utility";
+import toast from "react-hot-toast";
 
 const AddTeacher = () => {
   const [role] = useRole();
@@ -29,6 +31,12 @@ const AddTeacher = () => {
       console.log("API Response:", data);
       return data;
     },
+    onSuccess: async () => {
+      toast.success("Teacher Added succesfull");
+    },
+    onError: async () => {
+      toast.error(error);
+    },
   });
 
   const handleSubmit = async (e) => {
@@ -41,26 +49,28 @@ const AddTeacher = () => {
     const subject = form.subject.value;
     const date = form.date.value;
     const gender = form.gender.value;
-    const image = form.image.value;
+    const image = form.image.files[0];
     const email = form.email.value;
     const joiningDate = form.joiningDate.value;
     const fatherName = form.fatherName.value;
 
-    // Prepare form data
-    const formInfo = {
-      name,
-      admissionNumber,
-      subject,
-      date,
-      gender,
-      image,
-      email,
-      joiningDate,
-      fatherName,
-    };
-
     // Use mutation to submit data
     try {
+      // Prepare form data
+      const imageUrl = await imageUpload(image);
+
+      const formInfo = {
+        name,
+        admissionNumber,
+        subject,
+        date,
+        gender,
+        image: imageUrl,
+        email,
+        joiningDate,
+        fatherName,
+      };
+
       await mutation.mutateAsync(formInfo);
     } catch (error) {
       console.error("Error:", error);
