@@ -18,6 +18,12 @@ const AdminMenu = () => {
         title="All Student List"
         address="all-student-list"
       />
+      {/* <MenuItem icon={FaUsers} title="Add Shedules" address={"add-shudels"} /> */}
+      {/* <MenuItem
+        icon={FaUsers}
+        title="Class Shedules"
+        address={"teacher-schedule"}
+      /> */}
       <MenuItem
         icon={FaBook}
         title="Add Student Parent"
