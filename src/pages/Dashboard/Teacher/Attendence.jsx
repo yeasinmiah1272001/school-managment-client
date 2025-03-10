@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useRole from "../../../hooks/useRole";
 import DasboardTitle from "../../../components/Dashboard/DasboardTitle";
 import Container from "../../../components/Container";
+import useRole from "../../../hooks/useRole";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import TableRow from "../../../components/Form/TableRow";
+import StudentAttendance from "./StudentAttendance";
 
-const AllStudentList = () => {
+const Attendence = () => {
   const [role] = useRole();
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
@@ -35,10 +35,9 @@ const AllStudentList = () => {
       setFilteredStudent(students);
     }
   }, [searchTerm, students]);
-
   return (
     <div>
-      <DasboardTitle role={role} action={"All Student List"} />
+      <DasboardTitle role={role} action={"All Student Attendence"} />
       <Container className="lg:mr-6 mt-4 p-4 rounded-lg">
         {/* Search Input */}
         <div className="border border-white rounded-full">
@@ -66,8 +65,9 @@ const AllStudentList = () => {
                   </th>
                   <th className="border border-gray-300 px-4 py-2">Email</th>
                   <th className="border border-gray-300 px-4 py-2">Action</th>
-                  <th className="border border-gray-300 px-4 py-2">Edit</th>
-                  <th className="border border-gray-300 px-4 py-2">Delete</th>
+                  <th className="border border-gray-300 px-4 py-2">
+                    Attendence Request
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -97,16 +97,7 @@ const AllStudentList = () => {
                         View Profile
                       </button>
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
-                        Edit
-                      </button>
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
-                        Delete
-                      </button>
-                    </td>
+                    <StudentAttendance student={student} />
                   </tr>
                 ))}
               </tbody>
@@ -122,4 +113,4 @@ const AllStudentList = () => {
   );
 };
 
-export default AllStudentList;
+export default Attendence;

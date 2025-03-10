@@ -21,6 +21,7 @@ import AllStudentList from "../pages/Dashboard/Admin/AllStudentList";
 import AllTeacherList from "../pages/Dashboard/Admin/AllTeacherList";
 import Statistics from "../pages/Dashboard/Admin/Statistics";
 import AdmissionFee from "../pages/Dashboard/Student/AdmissionFee";
+import Attendence from "../pages/Dashboard/Teacher/Attendence";
 
 export const Router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const Router = createBrowserRouter([
       {
         path: "subject-mark",
         element: <AddStudentMark />,
+      },
+      {
+        path: "attendence",
+        element: <Attendence />,
       },
 
       // student releted
