@@ -5,6 +5,7 @@ import Container from "../../../components/Container";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import TableRow from "../../../components/Form/TableRow";
+import { Link } from "react-router-dom";
 
 const AllStudentList = () => {
   const [role] = useRole();
@@ -93,9 +94,12 @@ const AllStudentList = () => {
                       {student.email}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                      <Link
+                        to={`/dashboard/viewStudentProfile/${student._id}`}
+                        className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300"
+                      >
                         View Profile
-                      </button>
+                      </Link>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
