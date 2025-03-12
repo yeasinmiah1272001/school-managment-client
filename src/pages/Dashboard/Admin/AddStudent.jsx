@@ -17,7 +17,7 @@ const AddStudent = () => {
   const formFields = [
     { label: "Name", id: "name" },
     { label: "Roll Number", id: "rollNumber" },
-    { label: "Class", id: "class" },
+    { label: "Class Name", id: "class" },
     { label: "Date of Birth", id: "date-of-birth", type: "date" },
     { label: "Gender", id: "gender" },
     { label: "Email", id: "email", type: "email" },
@@ -49,6 +49,7 @@ const AddStudent = () => {
     // Access each field individually
     const name = form.name.value;
     const rollNumber = form.rollNumber.value;
+    const className = form.class.value;
     const date = form["date-of-birth"].value;
     const gender = form.gender.value;
     const image = form.photo.files[0]; // corrected to match the input's id
@@ -66,6 +67,7 @@ const AddStudent = () => {
         name,
         rollNumber, // corrected 'admissionNumber' to 'rollNumber'
         date,
+        className,
         gender,
         image: imageUrl,
         email,

@@ -10,6 +10,7 @@ const Attendence = () => {
   const [role] = useRole();
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [selectedClass, setSelectedClass] = useState(""); // State for selected class
   const [filteredStudent, setFilteredStudent] = useState([]); // State for filtered data
 
   // Fetch data using React Query
@@ -21,26 +22,38 @@ const Attendence = () => {
     },
   });
 
-  // Filter students based on the search term
+  // Filter students based on the search term and selected class
   useEffect(() => {
+    let filtered = students || []; // যদি `students` undefined হয়, তাহলে খালি অ্যারে নেবে।
+
     if (searchTerm) {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
-      const filtered = students.filter(
+      filtered = filtered.filter(
         (student) =>
-          student.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-          student.rollNumber.toLowerCase().includes(lowerCaseSearchTerm)
+          (student.name?.toLowerCase() || "").includes(lowerCaseSearchTerm) ||
+          (student.rollNumber?.toLowerCase() || "").includes(
+            lowerCaseSearchTerm
+          )
       );
-      setFilteredStudent(filtered);
-    } else {
-      setFilteredStudent(students);
     }
-  }, [searchTerm, students]);
+
+    if (selectedClass) {
+      filtered = filtered.filter(
+        (student) =>
+          (student.className?.toLowerCase() || "") ===
+          selectedClass.toLowerCase()
+      );
+    }
+
+    setFilteredStudent(filtered);
+  }, [searchTerm, selectedClass, students]);
+
   return (
     <div>
       <DasboardTitle role={role} action={"All Student Attendence"} />
       <Container className="lg:mr-6 mt-4 p-4 rounded-lg">
         {/* Search Input */}
-        <div className="border border-white rounded-full">
+        <div className="border border-white rounded-full mb-4">
           <input
             className="bg-[#072F7C]/40 w-full outline-none p-2 text-white rounded-full"
             type="text"
@@ -48,6 +61,22 @@ const Attendence = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} // Update search term
           />
+        </div>
+
+        {/* Class Selection */}
+        <div className="mb-4">
+          <select
+            className="p-2 border border-gray-300 rounded"
+            value={selectedClass}
+            onChange={(e) => setSelectedClass(e.target.value)}
+          >
+            <option value="">All Classes</option>
+            <option value="Six">Six</option>
+            <option value="Seven">Seven</option>
+            <option value="Eight">Eight</option>
+            <option value="Nine">Nine</option>
+            <option value="Ten">Ten</option>
+          </select>
         </div>
 
         {/* Table or No Data Message */}
@@ -61,12 +90,15 @@ const Attendence = () => {
                     Student Name
                   </th>
                   <th className="border border-gray-300 px-4 py-2">
+                    Class Name
+                  </th>
+                  <th className="border border-gray-300 px-4 py-2">
                     Roll Number
                   </th>
                   <th className="border border-gray-300 px-4 py-2">Email</th>
                   <th className="border border-gray-300 px-4 py-2">Action</th>
                   <th className="border border-gray-300 px-4 py-2">
-                    Attendence Request
+                    Attendance Request
                   </th>
                 </tr>
               </thead>
@@ -78,13 +110,16 @@ const Attendence = () => {
                   >
                     <td className="border border-gray-300 px-4 py-2 text-center">
                       <img
-                        src={student.image} // Assuming student has a 'image' field
+                        src={student.image}
                         alt={`${student.name} profile`}
                         className="w-12 h-12 rounded-full mx-auto"
                       />
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {student.name}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {student.className}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {student.rollNumber}
