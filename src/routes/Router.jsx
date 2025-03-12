@@ -23,6 +23,7 @@ import Statistics from "../pages/Dashboard/Admin/Statistics";
 import AdmissionFee from "../pages/Dashboard/Student/AdmissionFee";
 import Attendence from "../pages/Dashboard/Teacher/Attendence";
 import ViewStudentProfile from "../pages/Dashboard/Student/ViewStudentProfile";
+import StudentUpdate from "../pages/Dashboard/Admin/StudentUpdate";
 
 export const Router = createBrowserRouter([
   {
@@ -72,6 +73,12 @@ export const Router = createBrowserRouter([
       {
         path: "statistics",
         element: <Statistics />,
+      },
+      {
+        path: "studentUpdate/:id",
+        element: <StudentUpdate />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-student/${params.id}`),
       },
 
       // teacher related

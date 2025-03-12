@@ -4,14 +4,15 @@ import DasboardTitle from "../../../components/Dashboard/DasboardTitle";
 import Container from "../../../components/Container";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import TableRow from "../../../components/Form/TableRow";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AllStudentList = () => {
   const [role] = useRole();
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
   const [filteredStudent, setFilteredStudent] = useState([]); // State for filtered data
+  const [isOpen, setIsEditModalOpen] = useState(false);
 
   // Fetch data using React Query
   const { data: students = [], refetch } = useQuery({
@@ -36,6 +37,15 @@ const AllStudentList = () => {
       setFilteredStudent(students);
     }
   }, [searchTerm, students]);
+
+  const handleStudentDelete = async (id) => {
+    const res = await axiosSecure.delete(`/student/${id}`);
+    if (res.data.deletedCount > 0) {
+      console.log(res.data);
+      toast.success("Student Deleted Success");
+      refetch();
+    }
+  };
 
   return (
     <div>
@@ -102,12 +112,18 @@ const AllStudentList = () => {
                       </Link>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                      <Link
+                        to={`/dashboard/studentUpdate/${student._id}`}
+                        className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300"
+                      >
                         Edit
-                      </button>
+                      </Link>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <button className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                      <button
+                        onClick={() => handleStudentDelete(student._id)}
+                        className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300"
+                      >
                         Delete
                       </button>
                     </td>
