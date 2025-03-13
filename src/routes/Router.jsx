@@ -24,6 +24,7 @@ import AdmissionFee from "../pages/Dashboard/Student/AdmissionFee";
 import Attendence from "../pages/Dashboard/Teacher/Attendence";
 import ViewStudentProfile from "../pages/Dashboard/Student/ViewStudentProfile";
 import StudentUpdate from "../pages/Dashboard/Admin/StudentUpdate";
+import AssingnMent from "../pages/Dashboard/Teacher/AssingnMent";
 
 export const Router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ export const Router = createBrowserRouter([
       {
         path: "attendence",
         element: <Attendence />,
+      },
+      {
+        path: "assingment",
+        element: <AssingnMent />,
       },
 
       // student releted

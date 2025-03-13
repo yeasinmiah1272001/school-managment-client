@@ -54,6 +54,7 @@ const StudentUpdate = () => {
       const res = await axiosSecure.patch(`/student/${_id}`, formInfo);
       if (res.data.modifiedCount > 0) {
         toast.success("Updated success");
+        console.log("updated", res.data);
         navigate("/dashboard/all-student-list");
       }
     } catch (error) {

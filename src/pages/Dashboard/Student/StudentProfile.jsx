@@ -6,6 +6,8 @@ import DasboardTitle from "../../../components/Dashboard/DasboardTitle";
 import Container from "../../../components/Container";
 import StudentAttendance from "../Teacher/StudentAttendance";
 import { Link } from "react-router-dom";
+import { IoMdCheckmark } from "react-icons/io";
+import { RxCross2 } from "react-icons/rx";
 
 const StudentProfile = () => {
   const [role] = useRole();
@@ -104,12 +106,18 @@ const StudentProfile = () => {
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {student.attendance === true ? (
-                        <button className="border bg-green-400 border-black  text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
-                          Attendance Success
+                        <button className="border flex gap-2 items-center bg-green-400 border-black  text-black px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                          Present{" "}
+                          <span>
+                            <IoMdCheckmark size={25} />
+                          </span>
                         </button>
                       ) : (
-                        <button className="border border-black bg-rose-700 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
-                          Submit Attendance
+                        <button className="border flex gap-2 items-center border-black bg-rose-700 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                          Absent{" "}
+                          <span>
+                            <RxCross2 size={25} />
+                          </span>
                         </button>
                       )}
                     </td>

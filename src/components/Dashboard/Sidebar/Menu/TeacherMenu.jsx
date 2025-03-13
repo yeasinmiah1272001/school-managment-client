@@ -20,6 +20,7 @@ const TeacherMenu = () => {
         address={"attendence"}
         icon={FaBook}
       />
+      <MenuItem title={"Add Assignment"} address={"assingment"} icon={FaBook} />
       <MenuItem
         title={"Subject Marks"}
         address={"subject-mark"}
