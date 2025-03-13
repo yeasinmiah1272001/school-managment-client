@@ -70,8 +70,12 @@ const StudentProfile = () => {
                   <th className="border border-gray-300 px-4 py-2">Email</th>
                   <th className="border border-gray-300 px-4 py-2">Action</th>
                   <th className="border border-gray-300 px-4 py-2">
+                    Assignment
+                  </th>
+                  <th className="border border-gray-300 px-4 py-2">
                     Attendence Request
                   </th>
+                  <th className="border border-gray-300 px-4 py-2"></th>
                 </tr>
               </thead>
               <tbody>
@@ -103,6 +107,20 @@ const StudentProfile = () => {
                       >
                         View Profile
                       </Link>
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {student.assignmentName ? (
+                        <Link
+                          to={`/dashboard/viewassignment/${student._id}`}
+                          className="border border-black bg-transparent text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300"
+                        >
+                          View Assignment
+                        </Link>
+                      ) : (
+                        <p className="border border-black bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
+                          No Assignment
+                        </p>
+                      )}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {student.attendance === true ? (

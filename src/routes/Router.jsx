@@ -25,6 +25,7 @@ import Attendence from "../pages/Dashboard/Teacher/Attendence";
 import ViewStudentProfile from "../pages/Dashboard/Student/ViewStudentProfile";
 import StudentUpdate from "../pages/Dashboard/Admin/StudentUpdate";
 import AssingnMent from "../pages/Dashboard/Teacher/AssingnMent";
+import ViewAssignment from "../pages/Dashboard/Student/ViewAssignment";
 
 export const Router = createBrowserRouter([
   {
@@ -129,6 +130,12 @@ export const Router = createBrowserRouter([
       {
         path: "viewStudentProfile/:id",
         element: <ViewStudentProfile />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-student/${params.id}`),
+      },
+      {
+        path: "viewassignment/:id",
+        element: <ViewAssignment />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-student/${params.id}`),
       },
