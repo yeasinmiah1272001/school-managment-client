@@ -10,7 +10,7 @@ const ViewAssignment = () => {
   console.log("assignment", allAssignment);
 
   return (
-    <div className="min-h-screen  py-10">
+    <div className="min-h-screen">
       <DasboardTitle role={role} action={"Assignment Page"} />
       <Container>
         <div className="max-w-3xl mx-auto  shadow-lg rounded-2xl p-6">
