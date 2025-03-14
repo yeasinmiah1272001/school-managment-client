@@ -17,29 +17,29 @@ const AddStudentMark = () => {
     const classSelecteds = form.classSelects.value;
     const name = form.name.value;
     const subjectSelect = form.subjectSelect.value;
-    const addmark = form.addmark.value;
-    // console.log("mark", typeof addmark);
+    const addmark = form.addmark.value; // This is a string by default
 
+    // Ensure addmark is converted to a number
     const allInfo = {
       classSelecteds,
-      addmark,
+      addmark: parseInt(addmark), // Ensure it's an integer
       subjectSelect,
       name,
     };
-    console.log(allInfo);
-    try {
-      // Send a PATCH request to update the assignment for students
-      const res = await axiosSecure.patch("/all-student", allInfo);
 
-      if (res.data.success) {
-        console.log("res data", res.data);
-        toast.success("Add Subject Mark Successfully!");
-        form.reset(); // Reset the form after successful submission
+    try {
+      // Send a PUT request to update the assignment for students
+      const res = await axiosSecure.put("/all-student", allInfo);
+
+      if (res.data.message === "Mark and subject added successfully!") {
+        toast.success("Mark and subject added successfully");
       } else {
-        toast.error("Failed to Subject mark!");
+        toast.error(
+          res.data.message || "No matching student found or no changes made"
+        );
       }
     } catch (error) {
-      console.error("Error subject mark:", error);
+      console.error("Error adding student mark:", error);
       toast.error("Something went wrong!");
     }
   };
