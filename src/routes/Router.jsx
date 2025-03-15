@@ -26,6 +26,10 @@ import ViewStudentProfile from "../pages/Dashboard/Student/ViewStudentProfile";
 import StudentUpdate from "../pages/Dashboard/Admin/StudentUpdate";
 import AssingnMent from "../pages/Dashboard/Teacher/AssingnMent";
 import ViewAssignment from "../pages/Dashboard/Student/ViewAssignment";
+import StudentHome from "../pages/Dashboard/Student/StudentHome";
+import TeacherHome from "../pages/Dashboard/Teacher/TeacherHome";
+import AddAllNotice from "../pages/Dashboard/Admin/AddAllNotice";
+import AllNotice from "../components/Dashboard/AllNotice";
 
 export const Router = createBrowserRouter([
   {
@@ -51,7 +55,12 @@ export const Router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard",
+        element: <Statistics />,
+      },
       // admin
+
       {
         path: "all-student-list",
         element: <AllStudentList />,
@@ -72,18 +81,23 @@ export const Router = createBrowserRouter([
         path: "all-teacher-list",
         element: <AllTeacherList />,
       },
-      {
-        path: "statistics",
-        element: <Statistics />,
-      },
+
       {
         path: "studentUpdate/:id",
         element: <StudentUpdate />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-student/${params.id}`),
       },
+      {
+        path: "addnotice",
+        element: <AddAllNotice />,
+      },
 
       // teacher related
+      {
+        path: "teacherHome",
+        element: <TeacherHome />,
+      },
       {
         path: "teacher-profile",
         element: <TeacherProfile />,
@@ -106,6 +120,10 @@ export const Router = createBrowserRouter([
       },
 
       // student releted
+      {
+        path: "studenthome",
+        element: <StudentHome />,
+      },
       {
         path: "student-profile",
         element: <StudentProfile />,
@@ -138,6 +156,13 @@ export const Router = createBrowserRouter([
         element: <ViewAssignment />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-student/${params.id}`),
+      },
+      // shared
+      {
+        path: "noticedetails/:id",
+        element: <AllNotice />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-notice/${params.id}`),
       },
     ],
   },

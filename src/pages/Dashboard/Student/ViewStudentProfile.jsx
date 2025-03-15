@@ -2,7 +2,7 @@ import React from "react";
 import DasboardTitle from "../../../components/Dashboard/DasboardTitle";
 import Container from "../../../components/Container";
 import useRole from "../../../hooks/useRole";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import InfoRow from "../../../components/Dashboard/InfoRow";
 
 const ViewStudentProfile = () => {
@@ -28,10 +28,10 @@ const ViewStudentProfile = () => {
             {/* Buttons */}
             <div className="w-full space-y-3 mt-4">
               <button className="w-full py-3 bg-indigo-900 text-white font-medium rounded hover:bg-indigo-800 transition">
-                Exam results
+                <Link to={"/dashboard/student-result"}>Exam results</Link>
               </button>
               <button className="w-full py-3 bg-indigo-900 text-white font-medium rounded hover:bg-indigo-800 transition">
-                Time Table
+                <Link to={"/dashboard/student-routin"}>Class Routin</Link>
               </button>
             </div>
           </div>

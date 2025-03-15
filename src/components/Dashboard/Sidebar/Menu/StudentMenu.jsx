@@ -5,6 +5,7 @@ import { FaBook } from "react-icons/fa";
 const StudentMenu = () => {
   return (
     <div>
+      {/* <MenuItem title={"Student Home"} address={"studenthome"} icon={FaBook} /> */}
       <MenuItem
         title={"Student Profile"}
         address={"student-profile"}

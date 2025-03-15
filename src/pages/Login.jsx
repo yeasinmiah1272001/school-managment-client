@@ -4,10 +4,12 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../provider/AuthProvider";
+import useRole from "../hooks/useRole";
 
 const Login = () => {
   const { loginUser, loading, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [role] = useRole();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,8 +19,8 @@ const Login = () => {
 
     try {
       await loginUser(email, password);
-      toast.success("User sign-in successful");
-      navigate("/dashboard");
+
+      navigate(`/dashboard`);
     } catch (error) {
       console.error("Error during sign-in:", error.message);
       toast.error(error.message);
@@ -29,7 +31,7 @@ const Login = () => {
     try {
       await signInWithGoogle();
       toast.success("Google Login successful");
-      navigate("/dashboard");
+      navigate(`/dashboard`);
     } catch (error) {
       console.error("Error during Google sign-in:", error.message);
       toast.error(error.message);

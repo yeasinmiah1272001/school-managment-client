@@ -3,6 +3,7 @@ import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import { BsGraphUp } from "react-icons/bs";
 
 import AdminMenu from "./Menu/AdminMenu";
 
@@ -45,6 +46,25 @@ const Sidebar = () => {
 
         {/* Navigation Links */}
         <nav className="">
+          <NavLink
+            to="/dashboard"
+            end
+            className={({ isActive }) =>
+              `flex items-center px-4 py-2 my-4  transition-colors duration-300 transform ${
+                isActive
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-300 hover:bg-indigo-500 hover:text-white"
+              } rounded-lg`
+            }
+          >
+            <BsGraphUp className="w-5 h-5" />
+
+            <span className="mx-4 font-medium">
+              {" "}
+              {role ? role[0].toUpperCase() + role.substring(1) : ""} Home
+            </span>
+          </NavLink>
+
           {role === "admin" && <AdminMenu />}
           {role === "student" && <StudentMenu />}
           {role === "teacher" && <TeacherMenu />}

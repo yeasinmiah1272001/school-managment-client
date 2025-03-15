@@ -7,7 +7,7 @@ import { useLoaderData } from "react-router-dom";
 const ViewAssignment = () => {
   const [role] = useRole();
   const allAssignment = useLoaderData();
-  console.log("assignment", allAssignment);
+  // console.log("assignment", allAssignment);
 
   return (
     <div className="min-h-screen">
