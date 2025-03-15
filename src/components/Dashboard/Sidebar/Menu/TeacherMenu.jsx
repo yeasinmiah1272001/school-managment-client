@@ -1,31 +1,36 @@
 import React from "react";
+import {
+  FaUser,
+  FaCalendarAlt,
+  FaClipboardList,
+  FaPen,
+  FaGraduationCap,
+} from "react-icons/fa";
 import MenuItem from "./MenuItem";
-import { FaBook } from "react-icons/fa";
 
 const TeacherMenu = () => {
   return (
     <div>
-      {/* <MenuItem title={"Teacher Home"} address={"teacherhome"} icon={FaBook} /> */}
       <MenuItem
         title={"Teacher Profile"}
         address={"teacher-profile"}
-        icon={FaBook}
+        icon={FaUser}
       />
       <MenuItem
         title={"Class Schedule"}
         address={"teacher-schedule"}
-        icon={FaBook}
+        icon={FaCalendarAlt}
       />
       <MenuItem
-        title={"Student Attendence"}
+        title={"Student Attendance"}
         address={"attendence"}
-        icon={FaBook}
+        icon={FaClipboardList}
       />
-      <MenuItem title={"Add Assignment"} address={"assingment"} icon={FaBook} />
+      <MenuItem title={"Add Assignment"} address={"assingment"} icon={FaPen} />
       <MenuItem
         title={"Subject Marks"}
         address={"subject-mark"}
-        icon={FaBook}
+        icon={FaGraduationCap}
       />
     </div>
   );

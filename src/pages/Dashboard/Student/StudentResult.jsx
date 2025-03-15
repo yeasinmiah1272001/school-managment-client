@@ -112,11 +112,11 @@ const StudentResult = () => {
         {filteredStudent.length > 0 && !selectedStudent && (
           <div className="mb-6">
             <h3 className="text-lg font-medium mb-2">Search Results:</h3>
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               {filteredStudent.map((student) => (
                 <div
                   key={student._id}
-                  className="p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
+                  className="p-3 bg-[#DDF8A0]/70 border rounded-lg cursor-pointer hover:bg-[#DDF8A0]"
                   onClick={() => handleSelectStudent(student)}
                 >
                   <p className="font-medium">{student.name}</p>

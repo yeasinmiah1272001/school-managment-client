@@ -1,30 +1,34 @@
 import React from "react";
+import {
+  FaUser,
+  FaCalendarAlt,
+  FaGraduationCap,
+  FaMoneyBillAlt,
+} from "react-icons/fa";
 import MenuItem from "./MenuItem";
-import { FaBook } from "react-icons/fa";
 
 const StudentMenu = () => {
   return (
     <div>
-      {/* <MenuItem title={"Student Home"} address={"studenthome"} icon={FaBook} /> */}
       <MenuItem
         title={"Student Profile"}
         address={"student-profile"}
-        icon={FaBook}
+        icon={FaUser}
       />
       <MenuItem
-        title={" Class Routin"}
+        title={"Class Routine"}
         address={"student-routin"}
-        icon={FaBook}
+        icon={FaCalendarAlt}
       />
       <MenuItem
         title={"Student Result"}
         address={"student-result"}
-        icon={FaBook}
+        icon={FaGraduationCap}
       />
       <MenuItem
         title={"Admission Fee"}
         address={"admission-fee"}
-        icon={FaBook}
+        icon={FaMoneyBillAlt}
       />
     </div>
   );
