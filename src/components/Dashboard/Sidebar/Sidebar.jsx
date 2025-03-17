@@ -46,12 +46,14 @@ const Sidebar = () => {
           <h2 className="text-lg font-semibold mt-2">Dashboard ({role})</h2>
         </Link>
 
-        {role === "parent" && (
-          <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
-        )}
-        {role === "admin" && (
-          <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
-        )}
+        <div className="mt-2">
+          {role === "parent" && (
+            <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+          )}
+          {role === "admin" && (
+            <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+          )}
+        </div>
 
         {/* Navigation Links */}
         <nav className="">
