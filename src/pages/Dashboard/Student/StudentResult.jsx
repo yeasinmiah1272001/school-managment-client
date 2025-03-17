@@ -52,44 +52,6 @@ const StudentResult = () => {
     setSelectedStudent(student);
   };
 
-  // Calculate CGPA and overall grade
-  const calculateResults = (subjectMarks) => {
-    if (!subjectMarks || subjectMarks.length === 0)
-      return { cgpa: "N/A", grade: "N/A" };
-
-    const gradePoints = {
-      "A+": 5.0,
-      A: 4.0,
-      "A-": 3.7,
-      "B+": 3.3,
-      B: 3.0,
-      "B-": 2.7,
-      "C+": 2.3,
-      C: 2.0,
-      D: 1.0,
-      F: 0.0,
-    };
-
-    const totalPoints = subjectMarks.reduce((sum, subject) => {
-      return sum + (gradePoints[subject.grade] || 0);
-    }, 0);
-
-    const cgpa = (totalPoints / subjectMarks.length).toFixed(1);
-
-    // Determine overall grade based on CGPA
-    let grade = "F";
-    if (cgpa >= 4.5) grade = "A+";
-    else if (cgpa >= 3.7) grade = "A";
-    else if (cgpa >= 3.3) grade = "A-";
-    else if (cgpa >= 3.0) grade = "B+";
-    else if (cgpa >= 2.7) grade = "B";
-    else if (cgpa >= 2.3) grade = "B-";
-    else if (cgpa >= 2.0) grade = "C";
-    else if (cgpa >= 1.0) grade = "D";
-
-    return { cgpa, grade };
-  };
-
   return (
     <div>
       <DasboardTitle role={role} action={"Student Result"} />
@@ -219,20 +181,6 @@ const StudentResult = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
-
-            {/* Result Summary */}
-            <div className="px-6 py-3 text-center">
-              {(() => {
-                const { cgpa, grade } = calculateResults(
-                  selectedStudent.subjectsMark
-                );
-                return (
-                  <p className="font-medium">
-                    CGPA: {cgpa} &nbsp;&nbsp; GRADE: {grade}
-                  </p>
-                );
-              })()}
             </div>
 
             {/* Footer */}

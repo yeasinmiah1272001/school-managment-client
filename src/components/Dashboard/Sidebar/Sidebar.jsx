@@ -13,10 +13,12 @@ import StudentMenu from "./Menu/StudentMenu";
 import TeacherMenu from "./Menu/TeacherMenu";
 import ParentMenu from "./Menu/ParentMenu";
 import logo from "../../../assets/logo.png";
+import ToggleBtn from "../../Button/ToggleBtn";
 
 const Sidebar = () => {
   const { logOut } = useContext(AuthContext);
   const [isActive, setActive] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const navigate = useNavigate();
   const [role] = useRole();
   console.log("role", role);
@@ -25,10 +27,10 @@ const Sidebar = () => {
   //   navigate("/");
   // };
 
-  // Sidebar Responsive Handler
-  // const handleToggle = () => {
-  //   setActive(!isActive);
-  // };
+  const toggleHandler = (e) => {
+    // console.log(e.target.checked);
+    setToggle(e.target.checked);
+  };
 
   return (
     <>
@@ -43,6 +45,13 @@ const Sidebar = () => {
           <img className="w-10" src={logo} alt="" />
           <h2 className="text-lg font-semibold mt-2">Dashboard ({role})</h2>
         </Link>
+
+        {role === "parent" && (
+          <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+        )}
+        {role === "admin" && (
+          <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+        )}
 
         {/* Navigation Links */}
         <nav className="">
@@ -65,22 +74,26 @@ const Sidebar = () => {
             </span>
           </NavLink>
 
-          {role === "admin" && <AdminMenu />}
+          {/* {role === "admin" && <AdminMenu />} */}
           {role === "student" && <StudentMenu />}
           {role === "teacher" && <TeacherMenu />}
-          {role === "parent" && <ParentMenu />}
+          {/* admin  */}
+          {role === "admin" ? (
+            toggle ? (
+              <AdminMenu />
+            ) : (
+              <TeacherMenu />
+            )
+          ) : undefined}
+          {/* parent  */}
+          {role === "parent" ? (
+            toggle ? (
+              <ParentMenu />
+            ) : (
+              <StudentMenu />
+            )
+          ) : undefined}
         </nav>
-
-        {/* Profile and Logout */}
-        {/* <div className="mt-2 border-t border-indigo-500 pt-6 space-y-4">
-          <button
-            onClick={handleLogout}
-            className="flex items-center px-4 py-3 rounded-lg w-full transition-all duration-200 bg-red-500 hover:bg-red-600 shadow-md"
-          >
-            <GrLogout className="w-5 h-5" />
-            <span className="ml-3">Logout</span>
-          </button>
-        </div> */}
       </div>
     </>
   );

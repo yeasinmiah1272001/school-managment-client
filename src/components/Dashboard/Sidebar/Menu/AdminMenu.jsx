@@ -30,7 +30,7 @@ const AdminMenu = () => {
       <MenuItem icon={FaBell} title="Add Notice" address="addnotice" />
       <MenuItem
         icon={FaUserPlus}
-        title="Add Student Parent"
+        title="Add Gurdian"
         address="add-student-parent"
       />
     </>
