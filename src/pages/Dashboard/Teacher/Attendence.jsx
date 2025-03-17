@@ -18,6 +18,7 @@ const Attendence = () => {
     queryKey: ["student"],
     queryFn: async () => {
       const data = await axiosSecure.get("/all-student");
+      console.log(data);
       return data.data;
     },
   });

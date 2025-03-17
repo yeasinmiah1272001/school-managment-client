@@ -5,14 +5,17 @@ import { toast } from "react-hot-toast";
 const StudentAttendance = ({ student }) => {
   const [attendance, setAttendance] = useState(null); // Default value is null
   const axiosSecure = useAxiosSecure();
+  console.log("st", student?.attendance);
+  console.log("student", student);
   useEffect(() => {
     if (student?.attendance !== undefined) {
-      setAttendance(student.attendance);
+      setAttendance(student?.attendance?.attendance);
     }
   }, [student]);
 
   const handleAttendance = async (e) => {
     const isPresent = e.target.value === "Yes";
+    // console.log("is", isPresent);
     setAttendance(isPresent);
 
     try {

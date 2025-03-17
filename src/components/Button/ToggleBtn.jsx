@@ -1,7 +1,9 @@
 import React from "react";
 import useRole from "../../hooks/useRole";
+
 const ToggleBtn = ({ toggleHandler, toggle }) => {
   const [role] = useRole();
+
   return (
     <>
       {role === "parent" && (
@@ -16,10 +18,10 @@ const ToggleBtn = ({ toggleHandler, toggle }) => {
             className="hidden peer"
             checked={toggle}
           />
-          <span className="px-4 py-1 rounded-l-md bg-rose-400 peer-checked:bg-gray-300">
+          <span className="px-4 py-1 rounded-l-md bg-rose-500 text-white peer-checked:bg-gray-200 peer-checked:text-gray-700 transition duration-300">
             Student
           </span>
-          <span className="px-4 py-1 rounded-r-md bg-gray-300 peer-checked:bg-blue-400">
+          <span className="px-4 py-1 rounded-r-md bg-gray-200 text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white transition duration-300">
             Parent
           </span>
         </label>
@@ -36,10 +38,10 @@ const ToggleBtn = ({ toggleHandler, toggle }) => {
             className="hidden peer"
             checked={toggle}
           />
-          <span className="px-4 py-1 rounded-l-md bg-rose-400 peer-checked:bg-gray-300">
+          <span className="px-4 py-1 rounded-l-md bg-rose-500 text-white peer-checked:bg-gray-200 peer-checked:text-gray-700 transition duration-300">
             Teacher
           </span>
-          <span className="px-4 py-1 rounded-r-md bg-gray-300 peer-checked:bg-blue-400">
+          <span className="px-4 py-1 rounded-r-md bg-gray-200 text-gray-700 peer-checked:bg-blue-500 peer-checked:text-white transition duration-300">
             Admin
           </span>
         </label>

@@ -123,7 +123,7 @@ const StudentProfile = () => {
                       )}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {student.attendance === true ? (
+                      {student?.attendance?.attendance == true ? (
                         <button className="border flex gap-2 items-center bg-green-400 border-black  text-black px-3 py-1 rounded text-sm hover:bg-blue-600 duration-300">
                           Present{" "}
                           <span>
