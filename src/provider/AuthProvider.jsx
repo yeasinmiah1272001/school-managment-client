@@ -3,7 +3,6 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
-  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
