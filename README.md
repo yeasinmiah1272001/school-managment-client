@@ -13,7 +13,7 @@ Each role has distinct features and functionalities tailored to their needs.
 
 ## 🔗 Live Demo
 
-[Click here to view the live project](#) _(Replace with your live demo link)_
+[Click here to view the live project](#) _(https://school-managment-client.vercel.app)_
 
 ---
 
