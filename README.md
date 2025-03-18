@@ -15,6 +15,10 @@ Each role has distinct features and functionalities tailored to their needs.
 
 [Click here to view the live project](#) _(https://school-managment-client.vercel.app)_
 
+## 🔗 Server side code
+
+[Click here to view the live project](#) _(https://github.com/yeasinmiah1272001/school-managment-server)_
+
 ---
 
 ## 🔐 Default User Credentials
