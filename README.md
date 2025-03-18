@@ -17,6 +17,30 @@ Each role has distinct features and functionalities tailored to their needs.
 
 ---
 
+## 🔐 Default User Credentials
+
+### Admin
+
+- **Email**: `yeasin@gmail.com`
+- **Password**: `111111`
+
+### Teacher
+
+- **Email**: `rakib@gmail.com`
+- **Password**: `111111`
+
+### Student
+
+- **Email**: `jihad@gmail.com`
+- **Password**: `111111`
+
+### Parent
+
+- **Email**: `jakir@gmail.com`
+- **Password**: `111111`
+
+---
+
 ## 🚀 Features
 
 ### Admin Dashboard
@@ -103,32 +127,6 @@ Each role has distinct features and functionalities tailored to their needs.
    cd ../frontend
    npm start
    ```
-
----
-
-## 🔐 Default User Credentials
-
-### Admin
-
-- **Email**: `yeasin@gmail.com`
-- **Password**: `111111`
-
-### Teacher
-
-- **Email**: `rakib@gmail.com`
-- **Password**: `111111`
-
-### Student
-
-- **Email**: `jihad@gmail.com`
-- **Password**: `111111`
-
-### Parent
-
-- **Email**: `jakir@gmail.com`
-- **Password**: `111111`
-
----
 
 ## 📸 Screenshots
 
