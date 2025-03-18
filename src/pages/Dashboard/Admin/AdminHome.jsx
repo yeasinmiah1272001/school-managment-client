@@ -84,8 +84,8 @@ const AdminHome = () => {
             <FiActivity size={24} />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">student Absent</h2>
-            <p className="text-2xl font-bold">20 %</p>
+            <h2 className="text-lg font-semibold text-white">student Absent</h2>
+            <p className="text-2xl font-bold text-white">20 %</p>
           </div>
         </div>
       </div>

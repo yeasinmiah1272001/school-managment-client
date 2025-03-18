@@ -86,7 +86,9 @@ export const Router = createBrowserRouter([
         path: "studentUpdate/:id",
         element: <StudentUpdate />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-student/${params.id}`),
+          fetch(
+            `https://school-managment-server.vercel.app/all-student/${params.id}`
+          ),
       },
       {
         path: "addnotice",
@@ -149,20 +151,26 @@ export const Router = createBrowserRouter([
         path: "viewStudentProfile/:id",
         element: <ViewStudentProfile />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-student/${params.id}`),
+          fetch(
+            `https://school-managment-server.vercel.app/all-student/${params.id}`
+          ),
       },
       {
         path: "viewassignment/:id",
         element: <ViewAssignment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-student/${params.id}`),
+          fetch(
+            `https://school-managment-server.vercel.app/all-student/${params.id}`
+          ),
       },
       // shared
       {
         path: "noticedetails/:id",
         element: <AllNotice />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-notice/${params.id}`),
+          fetch(
+            `https://school-managment-server.vercel.app/all-notice/${params.id}`
+          ),
       },
     ],
   },
