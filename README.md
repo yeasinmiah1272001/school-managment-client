@@ -128,24 +128,6 @@ Each role has distinct features and functionalities tailored to their needs.
    npm start
    ```
 
-## 📸 Screenshots
-
-### Admin Dashboard
-
-![Admin Dashboard](#) _(Replace with your screenshot)_
-
-### Teacher Dashboard
-
-![Teacher Dashboard](#) _(Replace with your screenshot)_
-
-### Student Dashboard
-
-![Student Dashboard](#) _(Replace with your screenshot)_
-
-### Parent Dashboard
-
-![Parent Dashboard](#) _(Replace with your screenshot)_
-
 ---
 
 ## 🛡️ Security Features
